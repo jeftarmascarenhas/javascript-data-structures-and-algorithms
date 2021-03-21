@@ -25,6 +25,7 @@ class LinkedList {
 		this.tail.next = newNode
 	}
 
+	// O(1)
 	insertAtBegin(data) {
 		const newNode = new Node(data)
 		if (!this.head) {
@@ -46,15 +47,57 @@ class LinkedList {
 		let currentNode = this.head
 		let count = 0
 
-		while(currentNode) {
+		while(currentNode.next) {
 			count += 1
 			currentNode = currentNode.next
 		}	
 		return count
 	}
+
+	// N(1)
 	getHead() {
 		return this.head
 	}
+
+	// N(1)
+	getTail() {
+		return this.tail
+	}
+
+	// N(n)
+	getItemByValeu(data) {
+		if (!this.head) return null
+		if (this.head.data === data) return this.head
+
+		let currentNode = this.head
+		
+		while(currentNode.next) {
+			currentNode = currentNode.next
+			if (currentNode.data === data) {
+				return currentNode
+			}
+		}
+
+		return null
+	}
+
+	// N(1)
+	remove(node) {
+		if (!this.head) return null
+		if (this.head === node) {
+			this.head = node.next
+			this.tail = this.head
+			return
+		}
+
+		let currentNode = this.head
+
+		while(currentNode.next && currentNode.next !== node) {
+			currentNode = currentNode.next
+		}
+		currentNode.next = node.next
+	}
+
 }
 
 const list = new LinkedList()
@@ -62,6 +105,14 @@ const list = new LinkedList()
 list.insertAtBegin(1)
 list.insertAtBegin(2)
 list.insertAtBegin(3)
+list.insertAtBegin(4)
 
 console.log(list.length())
+
+const node = list.getItemByValeu(4)
+console.log(node)
+
+list.remove(node)
+
 console.log(list.getHead())
+console.log(list.getTail())
