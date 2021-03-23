@@ -16,13 +16,15 @@ class LinkedList {
 	// O(1)
 	append(data) {
 		const newNode = new Node(data)
+
 		if (!this.head) {
 			this.head = newNode
 			this.tail = this.head
 			return
 		}
-		this.head = this.tail
+
 		this.tail.next = newNode
+		this.tail = newNode
 	}
 
 	// O(1)
@@ -100,19 +102,3 @@ class LinkedList {
 
 }
 
-const list = new LinkedList()
-
-list.insertAtBegin(1)
-list.insertAtBegin(2)
-list.insertAtBegin(3)
-list.insertAtBegin(4)
-
-console.log(list.length())
-
-const node = list.getItemByValeu(4)
-console.log(node)
-
-list.remove(node)
-
-console.log(list.getHead())
-console.log(list.getTail())
