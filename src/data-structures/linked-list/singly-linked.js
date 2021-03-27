@@ -100,6 +100,7 @@ class LinkedList {
 		currentNode.next = node.next
 	}
 
+	//O(1)
 	removeAtStart() {
 		if(!this.head) {
 			return null
@@ -107,6 +108,7 @@ class LinkedList {
 		this.head = this.head.next
 	}
 
+	//O(n)
 	removeAtEnd() {
 		if(!this.head) {
 			return null
@@ -120,6 +122,30 @@ class LinkedList {
 		currentNode.next = null
 	}
 
+	//O(n)
+	toArray() {
+		let currentNode = this.head
+		const data = []
+		while (currentNode) {
+			data.push(currentNode.data)
+			currentNode = currentNode.next
+		}
+		return data
+	}
+
+	reverseLinkedList() {
+		let prevNode = null
+		let currentNode = this.head
+
+		while(currentNode !== null) {
+			let next = currentNode.next
+			currentNode.next = prevNode
+			prevNode = currentNode
+			currentNode = next
+		}
+		this.head = prevNode
+	}
+
 }
 
 const list = new LinkedList()
@@ -127,6 +153,6 @@ const list = new LinkedList()
 list.append(1)
 list.append(2)
 list.append(3)
-list.removeAtEnd()
+list.reverseLinkedList()
 
-console.log(list)
+console.log(list.toArray())
