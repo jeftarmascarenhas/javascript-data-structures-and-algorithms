@@ -100,5 +100,33 @@ class LinkedList {
 		currentNode.next = node.next
 	}
 
+	removeAtStart() {
+		if(!this.head) {
+			return null
+		}
+		this.head = this.head.next
+	}
+
+	removeAtEnd() {
+		if(!this.head) {
+			return null
+		}
+
+		let currentNode = this.head
+
+		while(currentNode.next.next !== null) {
+			currentNode = currentNode.next
+		}
+		currentNode.next = null
+	}
+
 }
 
+const list = new LinkedList()
+
+list.append(1)
+list.append(2)
+list.append(3)
+list.removeAtEnd()
+
+console.log(list)
